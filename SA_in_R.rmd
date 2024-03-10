@@ -381,6 +381,26 @@ wordcloud(negative_words$word, negative_words$Freq, max.words = 50, colors = "da
 ```
 
 
+```{r}
+# or we can create a single wordcloud with two colors that indicate the factor 'sentiment' of the words. We can use the ggwordcloud package to create the wordcloud, and the scale_color_manual() function from the ggplot2 package to specify the colors of the words. We can also use the theme_minimal() function from the ggplot2 package to specify the theme of the wordcloud.
+
+# first we need to create a data frame with the words and their sentiment, and we can use the ggwordcloud() function from the ggwordcloud package to create the wordcloud. We can also use the scale_color_manual() function from the ggplot2 package to specify the colors of the words, and the theme_minimal() function from the ggplot2 package to specify the theme of the wordcloud.
+
+positive_words <- positive_words %>%
+  mutate(sentiment = "positive")
+
+negative_words <- negative_words %>%
+  mutate(sentiment = "negative")
+
+wordcloud_data <- bind_rows(positive_words, negative_words)
+
+wordcloud_data %>% with(wordcloud(word, Freq, max.words = 100, ordered.colors=TRUE,
+                     colors=brewer.pal(4, "Dark2")[factor(wordcloud_data$sentiment)]))
+
+# the 'with' function is used to avoid having to use the 'wordcloud_data$' prefix for each variable in the wordcloud() function. 
+
+```
+
 Perfect! Now we have a good understanding of how to compute the polarity of the texts in our corpus of tweets with qdap. We can also use the polarity scores to create visualizations of the sentiment of the tweets, and to summarize the sentiment of the tweets.
 
 ## EXCERCISE 1

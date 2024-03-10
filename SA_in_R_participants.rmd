@@ -196,17 +196,27 @@ You can see that the dataset contains a user_id and a text. The user_id is used 
 We'll use the function 'polarity' to calculate it. The function takes two arguments: 'text.var' and 'grouping.var'. In this case, we will use 'text' for the text field, and 'user_id' as the grouping variable. The function will calculate the polarity of the tweets, and it will return a list with the polarity scores for each tweet.
 
 ```{r}
-# Calc overall polarity score
-tweet_polarity <- gotTwitter_sample %$% polarity(
-        text.var = text,
-        grouping.var = user_id,
-        deamplifiers = deamplification.words, 
-        amplifiers = amplification.words, 
-        negators = negation.words, 
-        polarity.frame = hash_sentiment_huliu
-        # change polarity.frame if you want to use another lexicon: the options are hash_sentiment_huliu, hash_sentiment_jockers_rinker, hash_sentiment_sentiword, nrck, bing, afinn
-  )
+# Calc overall polarity scores.
+# This operation might be a bit too heavy for your computer, so I saved the results in a rds file. You can load it and skip the next chunk.
+# 
+# tweet_polarity <- gotTwitter_sample %$% polarity(
+#         text.var = text,
+#         grouping.var = user_id,
+#         deamplifiers = deamplification.words, 
+#         amplifiers = amplification.words, 
+#         negators = negation.words, 
+#         polarity.frame = hash_sentiment_huliu
+#         # change the polarity.frame parameter if you want to use another lexicon: the options are hash_sentiment_huliu, hash_sentiment_jockers_rinker, hash_sentiment_sentiword, nrck, bing, afinn
+#   )
+# 
+# saveRDS(tweet_polarity, "tweet_polarity.rds")
+
 ```
+
+```{r}
+load("tweet_polarity.rds")
+```
+
 
 Let's have a look at the structure of the object and get a short overview of the content.
 
@@ -220,8 +230,8 @@ If we take a closer look at our text_polarity object structure, you can observe 
 We can use the view() function from the qdap package to view the polarity scores for all the texts, and for each user.
 
 ```{r}
-# view the polarity scores for all the texts
-view(tweet_polarity[["all"]])
+# # view the polarity scores for all the texts in a separate window
+# view(tweet_polarity[["all"]])
 
 # or just print the first few rows
 head(tweet_polarity[["all"]])
@@ -230,8 +240,8 @@ head(tweet_polarity[["all"]])
 
 
 ```{r}
-# view the polarity scores for each user
-view(tweet_polarity[["group"]])
+# # view the polarity scores for each user in a separate window
+# view(tweet_polarity[["group"]])
 
 # or just print the first few rows
 head(tweet_polarity[["group"]])
@@ -380,6 +390,26 @@ wordcloud(negative_words$word, negative_words$Freq, max.words = 50, colors = "da
 
 ```
 
+```{r}
+
+# or we can create a single wordcloud with two colors that indicate the factor 'sentiment' of the words. We can use the ggwordcloud package to create the wordcloud, and the scale_color_manual() function from the ggplot2 package to specify the colors of the words. We can also use the theme_minimal() function from the ggplot2 package to specify the theme of the wordcloud.
+
+# first we need to create a data frame with the words and their sentiment, and we can use the ggwordcloud() function from the ggwordcloud package to create the wordcloud. We can also use the scale_color_manual() function from the ggplot2 package to specify the colors of the words, and the theme_minimal() function from the ggplot2 package to specify the theme of the wordcloud.
+
+positive_words <- positive_words %>%
+  mutate(sentiment = "positive")
+
+negative_words <- negative_words %>%
+  mutate(sentiment = "negative")
+
+wordcloud_data <- bind_rows(positive_words, negative_words)
+
+wordcloud_data %>% with(wordcloud(word, Freq, max.words = 100, ordered.colors=TRUE,
+                     colors=brewer.pal(4, "Dark2")[factor(wordcloud_data$sentiment)]))
+
+# the 'with' function is used to avoid having to use the 'wordcloud_data$' prefix for each variable in the wordcloud() function. 
+
+```
 
 Perfect! Now we have a good understanding of how to compute the polarity of the texts in our corpus of tweets with qdap. We can also use the polarity scores to create visualizations of the sentiment of the tweets, and to summarize the sentiment of the tweets.
 
