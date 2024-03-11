@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3faea872-8df2-420e-91db-89500602aa2c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/SA_in_R.rmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/all_book_polarity.rds" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/all_books.rds" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/all_tdm.rds" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bos_pol.rds" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bos_reviews.rds" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/rAvailablePackageCache.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/rAvailablePackageCache.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/~$SA.pptx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -102,6 +97,8 @@
       <workItem from="1709739378791" duration="470000" />
       <workItem from="1709739872504" duration="307000" />
       <workItem from="1709740330197" duration="3337000" />
+      <workItem from="1710150833526" duration="152000" />
+      <workItem from="1710151011849" duration="210000" />
     </task>
     <servers />
   </component>
