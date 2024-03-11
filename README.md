@@ -3,8 +3,10 @@
 
 
 ## Tell me your thoughts about the course!
-Leave an anonymous feedback here: https://forms.gle/gYVRhf6VisU8cBTb6
+Leave an anonymous feedback here https://forms.gle/gYVRhf6VisU8cBTb6
 
-or use this ![QR code](QR_code.png)
+or use the QR code below:
+
+<img src="QR_code.png" width="200" height="200">
 
 
